@@ -3,6 +3,31 @@
 
 
 ## Números Aleatórios
+### Resultados
+| Algorítmo         |  Tamanho do Número    | Tempo para Gerar      |
+| --                | ::                    | -:                    |
+| Linear Congruente | 40                    |                       |
+|                   | 56                    |                       |
+|                   | 80                    |                       |
+|                   | 128                   |                       |
+|                   | 168                   |                       |
+|                   | 224                   |                       |
+|                   | 256                   |                       |
+|                   | 512                   |                       |
+|                   | 1024                  |                       |
+|                   | 2048                  |                       |
+|                   | 4096                  |                       |
+| Linear Congruente | 40                    |                       |
+|                   | 56                    |                       |
+|                   | 80                    |                       |
+|                   | 128                   |                       |
+|                   | 168                   |                       |
+|                   | 224                   |                       |
+|                   | 256                   |                       |
+|                   | 512                   |                       |
+|                   | 1024                  |                       |
+|                   | 2048                  |                       |
+|                   | 4096                  |                       |
 ## Números Primos
 ### Miller-Rabin
 ``` Python
@@ -109,6 +134,23 @@ class Fermat:
 			# If composite is never returned: return probably prime
 		return True
 ```
+### Resultados
+
+Utilizando o Algorítmo para geração de números aleatórios
+
+|  Tamanho do Número    | Tempo para Gerar      | Número Primo          |
+| ::                    | -:                    | -:                    |
+| 40                    |                       |                       |
+| 56                    |                       |                       |
+| 80                    |                       |                       |
+| 128                   |                       |                       |
+| 168                   |                       |                       |
+| 224                   |                       |                       |
+| 256                   |                       |                       |
+| 512                   |                       |                       |
+| 1024                  |                       |                       |
+| 2048                  |                       |                       |
+| 4096                  |                       |                       |
 
 ## Referências
 
