@@ -20,3 +20,44 @@ class LinearCongruentialGenerator:
         while self.state < (2**(self.numMinBits - 1)):
             self.state = (self.a * self.state + self.c) % self.m
         return self.state
+
+
+class XorShiftGenerator:
+    def __init__(self, seed=None):
+        self.state = (seed & 0xffffffff if seed is not None else int(time.time()))
+
+    def next(self):
+        self.state ^= (self.state << 13) & 0xffffffff
+        self.state ^= (self.state >> 17) & 0xffffffff
+        self.state ^= (self.state << 5) & 0xffffffff
+        return self.state
+
+    def getNumber(self, numBits):
+        # Make sure number has specified number of bits (Most significant bit 1)
+        numBitsFirstNumber = numBits % 32
+        next = 0
+        if numBitsFirstNumber == 0:
+            while next < 0x80000000:
+                next = self.next()
+            number = next
+            numBits -= 32
+        else:
+            minNumber = 0x80000000 >> (32 - numBitsFirstNumber)
+            maxNumber = 0x100000000 >> (32 - numBitsFirstNumber)
+            while next < minNumber or next >= maxNumber:
+                next = self.next()
+            number = next
+            numBits -= numBitsFirstNumber
+
+
+        while numBits > 0:
+            next = self.next()
+            if numBits > 32:
+                number = number << 32
+                number |= next
+                numBits -= 32
+            else:
+                number = number << numBits
+                number |= (next & (0xffffffff >> (32 - numBits)))
+                numBits = 0
+        return number
