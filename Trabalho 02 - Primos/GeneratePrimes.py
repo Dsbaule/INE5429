@@ -10,7 +10,7 @@ def bitLen(int_type):
     return(length)
 
 numBitsList = [40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048, 4096]
-sampleSize = 1;
+sampleSize = 10;
 
 seed = int(time.time())
 lcg = LinearCongruentialGenerator(seed)
@@ -49,7 +49,6 @@ for numBits in numBitsList:
 
 		while not MillerRabin.testPrime(next):
 			next = lcg.next()
-			print('-')
 
 		len = bitLen(next)
 
@@ -57,5 +56,5 @@ for numBits in numBitsList:
 		averageTime += curTime/sampleSize
 
 		print('\t' + str(len) + ' - ' + str(curTime))
-		print('\t' + str(next))
+		#print('\t' + str(next))
 	print('\tAverage Time: ' + str(averageTime))

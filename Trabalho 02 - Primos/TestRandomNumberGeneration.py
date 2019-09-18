@@ -1,4 +1,4 @@
-from RandomNumberGeneration import LinearCongruentialGenerator
+from RandomNumberGeneration import LinearCongruentialGenerator, XorShiftGenerator
 import time
 
 def bitLen(int_type):
@@ -13,19 +13,37 @@ sampleSize = 50;
 
 seed = int(time.time())
 lcg = LinearCongruentialGenerator(seed)
+xsg = XorShiftGenerator(seed)
 
+print('---------- Linear Congruential Generator ----------')
 for numBits in numBitsList:
     lcg.setMinBits(numBits)
     averageTime = 0.0;
-    print('Generating ' + str(numBits) + ' bits numbers:')
+    print('\tGenerating ' + str(numBits) + ' bits numbers:')
     for _ in range(sampleSize):
+
         startTime = time.time()
-
         next = lcg.next()
-        len = bitLen(next)
-
         curTime = (time.time() - startTime)
+
+        len = bitLen(next)
         averageTime += curTime/sampleSize
 
-        print('\t' + str(len) + ' - ' + str(curTime))
-    print('\tAverage Time: ' + str(averageTime))
+        print('\t\t' + str(len) + ' - ' + str(curTime))
+    print('\t\tAverage Time: ' + str(averageTime))
+
+print('---------- Xorshift ----------')
+for numBits in numBitsList:
+    averageTime = 0.0;
+    print('\tGenerating ' + str(numBits) + ' bits numbers:')
+    for _ in range(sampleSize):
+
+        startTime = time.time()
+        next = xsg.getNumber(numBits)
+        curTime = (time.time() - startTime)
+
+        len = bitLen(next)
+        averageTime += curTime/sampleSize
+
+        print('\t\t' + str(len) + ' - ' + str(curTime))
+    print('\t\tAverage Time: ' + str(averageTime))
