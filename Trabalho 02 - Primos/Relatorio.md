@@ -1,9 +1,14 @@
 # Trabalho Individual 2 - Número Primos
 
+#### Aluno: Daniel de Souza Baulé (16200639)
+
 
 
 ## Números Aleatórios
+
+
 ### Resultados
+
 | Algorítmo         |  Tamanho do Número    | Tempo para Gerar      |
 | --                | ::                    | -:                    |
 | Linear Congruente | 40                    |                       |
@@ -28,6 +33,7 @@
 |                   | 1024                  |                       |
 |                   | 2048                  |                       |
 |                   | 4096                  |                       |
+
 ## Números Primos
 ### Miller-Rabin
 ``` Python

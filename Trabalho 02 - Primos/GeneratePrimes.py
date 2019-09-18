@@ -15,47 +15,47 @@ sampleSize = 1;
 seed = int(time.time())
 lcg = LinearCongruentialGenerator(seed)
 xsg = XorShiftGenerator(seed)
-
-for numBits in numBitsList:
-    averageTime = 0.0;
-    print('Generating ' + str(numBits) + ' bits numbers:')
-    for _ in range(sampleSize):
-        startTime = time.time()
-
-        next = xsg.getNumber(numBits)
-
-        while not MillerRabin.testPrime(next):
-            next = xsg.getNumber(numBits)
-
-        len = bitLen(next)
-
-        curTime = (time.time() - startTime)
-        averageTime += curTime/sampleSize
-
-        print('\t' + str(len) + ' - ' + str(curTime))
-        print('\t' + str(next))
-    print('\tAverage Time: ' + str(averageTime))
-
 '''
 for numBits in numBitsList:
-    lcg.setMinBits(numBits)
-    averageTime = 0.0;
-    print('Generating ' + str(numBits) + ' bits numbers:')
-    for _ in range(sampleSize):
-        startTime = time.time()
+	averageTime = 0.0;
+	print('Generating ' + str(numBits) + ' bits numbers:')
+	for _ in range(sampleSize):
+		startTime = time.time()
 
-        next = lcg.next()
+		next = xsg.getNumber(numBits)
 
-        while not MillerRabin.testPrime(next):
-            next = lcg.next()
+		while not MillerRabin.testPrime(next):
+			next = xsg.getNumber(numBits)
+			#print(next)
 
-        len = bitLen(next)
+		len = bitLen(next)
 
-        curTime = (time.time() - startTime)
-        averageTime += curTime/sampleSize
+		curTime = (time.time() - startTime)
+		averageTime += curTime/sampleSize
 
-        print('\t' + str(len) + ' - ' + str(curTime))
-        print('\t' + str(next))
-    print('\tAverage Time: ' + str(averageTime))
-
+		print('\t' + str(len) + ' - ' + str(curTime))
+		print('\t' + str(next))
+	print('\tAverage Time: ' + str(averageTime))
 '''
+
+for numBits in numBitsList:
+	lcg.setMinBits(numBits)
+	averageTime = 0.0;
+	print('Generating ' + str(numBits) + ' bits numbers:')
+	for _ in range(sampleSize):
+		startTime = time.time()
+
+		next = lcg.next()
+
+		while not MillerRabin.testPrime(next):
+			next = lcg.next()
+			print('-')
+
+		len = bitLen(next)
+
+		curTime = (time.time() - startTime)
+		averageTime += curTime/sampleSize
+
+		print('\t' + str(len) + ' - ' + str(curTime))
+		print('\t' + str(next))
+	print('\tAverage Time: ' + str(averageTime))
